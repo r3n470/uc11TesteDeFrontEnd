@@ -1,0 +1,9 @@
+teste de front-end
+
+1-abrir o navegador
+2-maximizá-lo
+3-acessar site gamemania (máquina local)
+4-clicar em login
+5-preencher os campos login e senha
+6-clicar em enviar
+7-caso esteja correto, retornar para a tela inicial
