@@ -1,0 +1,92 @@
+package teste.gamemania;
+
+import java.security.PublicKey;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.validator.PublicClassValidator;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class teste_login {
+
+	private WebDriver driver;
+		
+	@Before
+	public void ConfigurarTeste() {
+	System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\chromedriver_win32\\chromedriver.exe");
+	driver = new ChromeDriver();
+	driver.manage().window().maximize();
+	}
+		
+	@Test
+	public void TesteLogin() {
+	
+		//try solicita para a página aguardar um tempo determinado antes de executar os PRÓXIMOS comandos
+		try {
+			
+		driver.get("http://localhost:4200/");
+		
+		//********************** INÍCIO TESTE 1
+		Thread.sleep(3000);
+		driver.findElement(By.className("loginTamanho")).click();
+		driver.findElement(By.className("input-padrao")).sendKeys("r@email.com");
+		Thread.sleep(1500);
+		driver.findElement(By.className("input-padrao-pass")).sendKeys("senhadorenato");
+		Thread.sleep(1500);
+		driver.findElement(By.className("enviar")).click();
+		Thread.sleep(2500);
+		
+		//**********************PAUSA
+		driver.findElement(By.className("input-padrao")).clear();
+		driver.findElement(By.className("input-padrao-pass")).clear();
+		Thread.sleep(3000);
+		
+		//********************** INÍCIO TESTE 2
+		driver.findElement(By.className("input-padrao")).sendKeys("renato@email.com");
+		Thread.sleep(1500);
+		driver.findElement(By.className("input-padrao-pass")).sendKeys("senhafake");
+		Thread.sleep(1500);
+		driver.findElement(By.className("enviar")).click();
+		Thread.sleep(2500);
+		
+		//**********************PAUSA
+		driver.findElement(By.className("input-padrao")).clear();
+		driver.findElement(By.className("input-padrao-pass")).clear();
+		Thread.sleep(3000);
+		
+		//********************** INÍCIO TESTE 3
+		driver.findElement(By.className("input-padrao")).sendKeys("renato@email.com");
+		Thread.sleep(1500);
+		driver.findElement(By.className("input-padrao-pass")).sendKeys("senhadorenato");
+		Thread.sleep(1500);
+		driver.findElement(By.className("enviar")).click();
+		Thread.sleep(2500);
+		
+     	//**********************PAUSA FINAL
+		driver.findElement(By.className("input-padrao")).clear();
+		driver.findElement(By.className("input-padrao-pass")).clear();
+		Thread.sleep(3000);
+
+		} catch (Exception e) {
+			//driver.get("http://google.com");
+		}  
+	}
+
+
+		@After 
+		public void FinalLogin() {
+			try {
+				Thread.sleep(5000);
+			} catch (Exception e) {
+			
+			}  
+			driver.close();
+		}
+}
+
+	
+	
